@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Livraison spéciale</title>
+
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    background:#fff7f3;
+    font-family:Arial, sans-serif;
+    text-align:center;
+    overflow-y:auto;
+    color:#2b2b2b;
+    padding-top:20px;
+}
+
+.container{
+    max-width:520px;
+    padding:20px;
+}
+
+.dog{
+    width:180px;
+    max-width:80%;
+    border-radius:18px;
+    animation: walk 2.8s ease-in-out forwards;
+}
+
+.flower{
+    width:90px;
+    opacity:0;
+    transition:1s;
+    margin-top:15px;
+}
+
+.hidden{
+    opacity:0;
+    transform:translateY(15px);
+    transition:1s;
+}
+
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@keyframes walk{
+    from{
+        transform:translateX(-240px);
+    }
+    to{
+        transform:translateX(0);
+    }
+}
+
+h2{
+    font-size:28px;
+    margin-top:20px;
+    margin-bottom:15px;
+}
+
+p{
+    font-size:17px;
+    line-height:1.5;
+    margin:8px 0;
+}
+
+button{
+    padding:13px 30px;
+    border:none;
+    border-radius:25px;
+    background:#ffb6c1;
+    font-size:17px;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+button:hover{
+    background:#ff9fb0;
+}
+
+#final{
+    margin-top:20px;
+    font-size:18px;
+    line-height:1.5;
+    opacity:0;
+    transition:1s;
+}
+
+#final.show{
+    opacity:1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <img src="dog.gif" class="dog" alt="Petit chien">
+
+    <br>
+
+    <img src="flower.png" id="flower" class="flower" alt="Fleur">
+
+    <div id="content" class="hidden">
+        <h2><span id="name">Emma</span>, livraison spéciale 🌹</h2>
+
+        <p>Il paraît que tu aimes les chiens et le romantisme.</p>
+
+        <p>Alors ce petit livreur avait quelque chose à te remettre 🌹</p>
+
+        <button onclick="showMessage()">Ouvrir</button>
+    </div>
+
+    <div id="final"></div>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name") || "Emma";
+
+document.getElementById("name").textContent = name;
+
+setTimeout(()=>{
+    document.getElementById("flower").classList.add("show");
+},2800);
+
+setTimeout(()=>{
+    document.getElementById("content").classList.add("show");
+},3600);
+
+function showMessage(){
+    const final = document.getElementById("final");
+
+    final.innerHTML =
+    `
+    <p>Maintenant que la livraison est faite...</p>
+    <p>Je peux enfin te souhaiter bonjour 😊</p>
+    `;
+
+    final.classList.add("show");
+}
+</script>
+
+</body>
+</html>
